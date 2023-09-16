@@ -5,4 +5,12 @@
 
 <h3>USE:</h3>
 1. Make install
-2. Make run
+
+#If you have docker#
+
+1. TO START: docker-compose up -d
+2. TO STOP: docker-compose down
+
+#If you don't have docker#
+
+1. make run //It will run on the port 80000
