@@ -1,7 +1,5 @@
 """Importing FastAPI module."""
-from fastapi import FastAPI
-
-
+from fastapi import FastAPI, WebSocket
 from mylib.wikitool import wiki_search
 
 app = FastAPI()
@@ -30,3 +28,19 @@ def wikisearch(name):
     name_to_search = f'"{name}"'
     searched_name, content = wiki_search(name_to_search)
     return {"name": searched_name, "content": content}
+
+
+#SOCKET CODING BEGINS FROM HERE
+
+@app.websocket("/app/ws")
+async def websocket(websocket: WebSocket):
+    print("Starting websocket with the CLIENT: ")
+    await websocket.accept()
+    print("Websocket Connecion Established:")
+    while True:
+         try:
+            data = await websocket.receive_text()
+            print(data)
+         except:
+            print('ERRORRR')
+            break
