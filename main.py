@@ -1,8 +1,18 @@
 """Importing FastAPI module."""
+from distutils.log import error
 from fastapi import FastAPI, WebSocket
 from mylib.wikitool import wiki_search
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/")
@@ -31,16 +41,21 @@ def wikisearch(name):
 
 
 #SOCKET CODING BEGINS FROM HERE
+websocket_connections = set()
 
 @app.websocket("/app/ws")
 async def websocket(websocket: WebSocket):
     print("Starting websocket with the CLIENT: ")
     await websocket.accept()
+    websocket_connections.add(websocket)
     print("Websocket Connecion Established:")
     while True:
          try:
             data = await websocket.receive_text()
             print(data)
-         except:
-            print('ERRORRR')
+            msgtosend = "HIBOSS"
+            await websocket.send_text(f"Server sending message")
+
+         except error as e:
+            print(e)
             break
