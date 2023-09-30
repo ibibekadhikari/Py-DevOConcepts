@@ -8,6 +8,6 @@ lint:
 	pylint --disable=R,C *.py mylib/*.py
 run:
 	#Running the code
-	uvicorn main:app --reload
+	uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
 all: install format lint run

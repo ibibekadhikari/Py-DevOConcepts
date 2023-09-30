@@ -12,9 +12,7 @@ services:
     build:
       context: .
     ports:
-      #The first port is where we want our docker to be hosted, the second port       #is where our application is running
-      #SIMPLE: Mapping port 80 to 8000 PORT
-      - 80:8000
+      - 8000:8000
 
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to
