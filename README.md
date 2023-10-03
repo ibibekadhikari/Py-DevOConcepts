@@ -1,5 +1,5 @@
 #A simple tool in order to test and see the deployment process.
-""" Made on purpose to learn & not for official use """
+""" Made on purpose to learn & not for official use: USE AT YOUR OWN RISK """
 <h2>Simple WiKI Search Api V2.0-<h2>
 
 
